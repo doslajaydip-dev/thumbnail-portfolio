@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAYDIP GFX — Admin</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div id="loginScreen" class="login-screen">
+    <div class="login-card">
+
+        <div class="login-logo">JAYDIP<span>GFX</span></div>
+
+        <p class="login-label">PRIVATE ADMIN AREA</p>
+
+        <h1>Welcome back.</h1>
+
+        <p class="login-description">
+            Sign in to manage your thumbnail portfolio.
+        </p>
+
+        <form id="loginForm">
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Admin email" required>
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Password" required>
+
+            <button type="submit" id="loginButton">
+                SIGN IN
+            </button>
+
+            <p id="loginStatus"></p>
+
+        </form>
+    </div>
+</div>
+
+
+<div id="adminDashboard" class="admin-dashboard">
+
+    <header class="admin-header">
+
+        <div>
+            <p class="admin-label">PRIVATE DASHBOARD</p>
+            <h1>JAYDIP GFX</h1>
+        </div>
+
+        <button id="logoutButton" class="logout-button">
+            LOGOUT
+        </button>
+
+    </header>
+
+
+    <main class="admin-container">
+
+        <section class="admin-box">
+
+            <div class="section-heading">
+                <p>PORTFOLIO</p>
+                <h2>Add Thumbnail</h2>
+            </div>
+
+            <label>Thumbnail</label>
+
+            <input
+                type="file"
+                id="thumbnail"
+                accept="image/png, image/jpeg, image/webp"
+            >
+
+            <label>Title</label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Enter thumbnail title"
+            >
+
+            <label>Category</label>
+
+            <select id="category">
+                <option value="Finance">Finance</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Business">Business</option>
+                <option value="AI & Tech">AI & Tech</option>
+            </select>
+
+            <button id="publish">
+                PUBLISH THUMBNAIL
+            </button>
+
+            <p id="status"></p>
+
+        </section>
+
+
+        <section class="thumbnail-manager">
+
+            <div class="manager-header">
+
+                <div>
+                    <p class="manager-label">PORTFOLIO</p>
+                    <h2>Uploaded Thumbnails</h2>
+                </div>
+
+                <button id="refresh" class="refresh-button">
+                    REFRESH
+                </button>
+
+            </div>
+
+            <div id="thumbnailList"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- EDIT MODAL -->
+
+<div id="editModal" class="edit-modal">
+
+    <div class="edit-card">
+
+        <button id="editClose" class="edit-close">
+            ×
+        </button>
+
+        <p class="manager-label">EDIT THUMBNAIL</p>
+
+        <h2>Update Details</h2>
+
+        <input type="hidden" id="editId">
+
+        <label>Title</label>
+
+        <input
+            type="text"
+            id="editTitle"
+            placeholder="Thumbnail title"
+        >
+
+        <label>Category</label>
+
+        <select id="editCategory">
+            <option value="Finance">Finance</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Business">Business</option>
+            <option value="AI & Tech">AI & Tech</option>
+        </select>
+
+        <button id="saveEdit">
+            SAVE CHANGES
+        </button>
+
+        <p id="editStatus"></p>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080808;
+    color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    cursor: pointer;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at 50% 0%, #1c1c1c, #080808 50%);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 48px;
+    background: #111;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    box-shadow: 0 30px 80px #000;
+}
+
+.login-logo {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 35px;
+}
+
+.login-logo span {
+    color: #777;
+}
+
+.login-label,
+.admin-label,
+.manager-label,
+.section-heading p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #777;
+    font-weight: 700;
+}
+
+.login-card h1 {
+    font-size: 42px;
+    margin-top: 12px;
+}
+
+.login-description {
+    color: #777;
+    margin: 12px 0 30px;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin: 18px 0 8px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px;
+    background: #0b0b0b;
+    color: #fff;
+    border: 1px solid #292929;
+    border-radius: 9px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #666;
+}
+
+#loginButton,
+#publish,
+#saveEdit {
+    width: 100%;
+    padding: 15px;
+    margin-top: 24px;
+    border: 0;
+    border-radius: 9px;
+    background: #f5f5f5;
+    color: #080808;
+}
+
+#loginButton:hover,
+#publish:hover,
+#saveEdit:hover {
+    transform: translateY(-2px);
+}
+
+#loginStatus,
+#status,
+#editStatus {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 14px;
+    color: #aaa;
+}
+
+.admin-dashboard {
+    display: none;
+    min-height: 100vh;
+}
+
+.admin-dashboard.active {
+    display: block;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 5vw;
+    border-bottom: 1px solid #202020;
+}
+
+.admin-header h1 {
+    font-size: 22px;
+    margin-top: 6px;
+}
+
+.logout-button,
+.refresh-button {
+    padding: 11px 17px;
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-size: 10px;
+}
+
+.logout-button:hover,
+.refresh-button:hover {
+    color: #fff;
+    border-color: #666;
+}
+
+.admin-container {
+    width: min(1400px, 90%);
+    margin: auto;
+    padding: 55px 0 80px;
+}
+
+.admin-box {
+    max-width: 650px;
+    padding: 30px;
+    background: #111;
+    border: 1px solid #252525;
+    border-radius: 16px;
+    margin-bottom: 70px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h2,
+.edit-card h2 {
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.thumbnail-manager {
+    width: 100%;
+}
+
+.manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.manager-header h2 {
+    font-size: 38px;
+    margin-top: 8px;
+}
+
+#thumbnailList {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.thumbnail-item {
+    overflow: hidden;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+}
+
+.thumbnail-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.thumbnail-info {
+    padding: 16px;
+}
+
+.thumbnail-info h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.thumbnail-info p {
+    font-size: 10px;
+    color: #777;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.thumbnail-actions {
+    display: flex;
+    gap: 8px;
+    padding: 0 16px 16px;
+}
+
+.edit-button,
+.delete-button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 10px;
+}
+
+.edit-button {
+    background: #222;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.delete-button {
+    background: #171717;
+    color: #aaa;
+    border: 1px solid #333;
+}
+
+.edit-button:hover {
+    background: #333;
+}
+
+.delete-button:hover {
+    background: #292929;
+    color: #fff;
+}
+
+.loading,
+.empty,
+.error {
+    grid-column: 1 / -1;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+    border: 1px dashed #292929;
+    border-radius: 12px;
+}
+
+
+/* EDIT MODAL */
+
+.edit-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+}
+
+.edit-modal.active {
+    display: flex;
+}
+
+.edit-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 35px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 16px;
+    position: relative;
+}
+
+.edit-close {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: 0;
+    background: none;
+    color: #888;
+    font-size: 28px;
+}
+
+.edit-close:hover {
+    color: #fff;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    #thumbnailList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .login-card {
+        padding: 30px 22px;
+    }
+
+    .login-card h1 {
+        font-size: 34px;
+    }
+
+    .admin-header {
+        padding: 22px;
+    }
+
+    .admin-container {
+        width: 92%;
+        padding-top: 35px;
+    }
+
+    .admin-box {
+        padding: 22px;
+    }
+
+    .manager-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .manager-header h2 {
+        font-size: 28px;
+    }
+
+    #thumbnailList {
+        grid-template-columns: 1fr;
+    }
+}
