@@ -1,12 +1,17 @@
-/* =========================================
-   SUPABASE
-========================================= */
+/* =====================================================
+   JAYDIP GFX — PORTFOLIO SCRIPT
+   3 ROW VERSION
+===================================================== */
+
+
+/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
     "https://snzuoikhihrgmmweqeao.supabase.co";
 
 const SUPABASE_ANON_KEY =
     "sb_publishable_FGMRamhkSCXV0WNzIupCkg_WmMMZTtZ";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -15,24 +20,19 @@ const supabaseClient =
     );
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+/* ================= DOM ================= */
 
-const row1 =
-    document.getElementById("thumbnailRow1");
+const rowOne =
+    document.getElementById("portfolioRowOne");
 
-const row2 =
-    document.getElementById("thumbnailRow2");
+const rowTwo =
+    document.getElementById("portfolioRowTwo");
 
-const filterButtons =
+const emptyMessage =
+    document.getElementById("portfolioEmpty");
+
+const filters =
     document.querySelectorAll(".filter");
-
-const cursorGlow =
-    document.querySelector(".cursor-glow");
-
-
-/* LIGHTBOX */
 
 const lightbox =
     document.getElementById("lightbox");
@@ -40,140 +40,144 @@ const lightbox =
 const lightboxImage =
     document.getElementById("lightboxImage");
 
-const lightboxTitle =
-    document.getElementById("lightboxTitle");
-
-const lightboxCategory =
-    document.getElementById("lightboxCategory");
-
 const lightboxClose =
     document.getElementById("lightboxClose");
 
-const lightboxPrev =
-    document.getElementById("lightboxPrev");
+const menuButton =
+    document.getElementById("menuButton");
 
-const lightboxNext =
-    document.getElementById("lightboxNext");
+const mobileMenu =
+    document.getElementById("mobileMenu");
 
-
-/* =========================================
-   DATA
-========================================= */
 
 let allThumbnails = [];
 
-let filteredThumbnails = [];
 
-let currentIndex = 0;
+/* =====================================================
+   CREATE THIRD ROW
+===================================================== */
 
-
-/* =========================================
-   LOAD THUMBNAILS
-========================================= */
-
-async function loadThumbnails() {
-
-    row1.innerHTML =
-        `<div class="loading">
-            Loading work...
-        </div>`;
-
-    row2.innerHTML =
-        `<div class="loading">
-            Loading work...
-        </div>`;
+let rowThree =
+    document.getElementById("portfolioRowThree");
 
 
-    const { data, error } =
-        await supabaseClient
-            .from("thumbnails")
-            .select(
-                "id, title, category, image_url, created_at"
-            )
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
+if (!rowThree && rowTwo) {
 
+    rowThree =
+        document.createElement("div");
 
-    if (error) {
+    rowThree.id =
+        "portfolioRowThree";
 
-        console.error(
-            "SUPABASE ERROR:",
-            error
-        );
+    rowThree.className =
+        rowOne.className;
 
-        row1.innerHTML =
-            `<div class="loading">
-                Unable to load thumbnails.
-            </div>`;
-
-        row2.innerHTML = "";
-
-        return;
-    }
-
-
-    allThumbnails =
-        data || [];
-
-    filteredThumbnails =
-        [...allThumbnails];
-
-
-    renderThumbnails(
-        filteredThumbnails
+    rowTwo.parentNode.insertBefore(
+        rowThree,
+        rowTwo.nextSibling
     );
 }
 
 
-/* =========================================
-   RENDER THUMBNAILS
-========================================= */
+/* ================= LOAD THUMBNAILS ================= */
 
-function renderThumbnails(
-    thumbnails
-) {
+async function loadThumbnails() {
 
-    row1.innerHTML = "";
-    row2.innerHTML = "";
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("thumbnails")
+                .select("*")
+                .order("created_at", {
+                    ascending: false
+                });
 
 
-    if (!thumbnails.length) {
+        if (error) {
 
-        row1.innerHTML =
-            `<div class="loading">
-                No thumbnails found.
-            </div>`;
+            console.error(
+                "Supabase thumbnail error:",
+                error
+            );
+
+            showEmpty();
+
+            return;
+        }
+
+
+        allThumbnails =
+            data || [];
+
+
+        renderThumbnails(
+            allThumbnails
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Portfolio loading error:",
+            error
+        );
+
+        showEmpty();
+    }
+}
+
+
+/* ================= RENDER ================= */
+
+function renderThumbnails(items) {
+
+    rowOne.innerHTML = "";
+    rowTwo.innerHTML = "";
+
+    if (rowThree) {
+        rowThree.innerHTML = "";
+    }
+
+
+    if (!items.length) {
+
+        showEmpty();
 
         return;
     }
 
 
-    /*
-       Split into two rows
-    */
-
-    let firstRow = [];
-    let secondRow = [];
+    emptyMessage.style.display =
+        "none";
 
 
-    thumbnails.forEach(
-        (thumbnail, index) => {
+    /* ---------------------------------------------
+       SPLIT INTO 3 ROWS
+    --------------------------------------------- */
 
-            if (index % 2 === 0) {
+    const firstRow = [];
+    const secondRow = [];
+    const thirdRow = [];
 
-                firstRow.push(
-                    thumbnail
-                );
+
+    items.forEach(
+        (item, index) => {
+
+            const row =
+                index % 3;
+
+
+            if (row === 0) {
+
+                firstRow.push(item);
+
+            } else if (row === 1) {
+
+                secondRow.push(item);
 
             } else {
 
-                secondRow.push(
-                    thumbnail
-                );
+                thirdRow.push(item);
 
             }
 
@@ -181,113 +185,168 @@ function renderThumbnails(
     );
 
 
-    /*
-       Make second row visible
-       even with few thumbnails
-    */
+    /* ---------------------------------------------
+       KEEP ROWS POPULATED
+       WHEN THERE ARE FEW THUMBNAILS
+    --------------------------------------------- */
 
-    if (secondRow.length < 2) {
+    if (
+        secondRow.length === 0 &&
+        firstRow.length
+    ) {
 
-        secondRow =
-            [...thumbnails];
-
+        secondRow.push(
+            ...firstRow
+        );
     }
 
 
+    if (
+        thirdRow.length === 0 &&
+        firstRow.length
+    ) {
+
+        thirdRow.push(
+            ...firstRow
+        );
+    }
+
+
+    /* ---------------------------------------------
+       CREATE CARDS
+    --------------------------------------------- */
+
     createCards(
-        row1,
+        rowOne,
         firstRow
     );
 
+
     createCards(
-        row2,
+        rowTwo,
         secondRow
     );
 
 
-    /*
-       Duplicate cards for
-       seamless animation
-    */
+    if (rowThree) {
 
-    duplicateCards(row1);
-    duplicateCards(row2);
+        createCards(
+            rowThree,
+            thirdRow
+        );
+
+    }
+
+
+    /* ---------------------------------------------
+       DUPLICATE FOR CONTINUOUS MARQUEE
+    --------------------------------------------- */
+
+    duplicateTrack(
+        rowOne
+    );
+
+
+    duplicateTrack(
+        rowTwo
+    );
+
+
+    if (rowThree) {
+
+        duplicateTrack(
+            rowThree
+        );
+
+    }
 }
 
 
-/* =========================================
-   CREATE CARD
-========================================= */
+/* ================= CREATE CARD ================= */
 
 function createCards(
     container,
-    thumbnails
+    items
 ) {
 
-    thumbnails.forEach(
-        thumbnail => {
+    items.forEach(
+        item => {
 
             const card =
                 document.createElement("div");
+
 
             card.className =
                 "thumbnail-card";
 
 
-            /*
-               IMAGE
-            */
-
             const image =
                 document.createElement("img");
 
+
             image.src =
-                thumbnail.image_url;
+                item.image_url;
+
 
             image.alt =
-                thumbnail.title;
+                item.title ||
+                "Thumbnail design";
+
 
             image.loading =
                 "lazy";
 
 
-            /*
-               OVERLAY
-            */
-
             const overlay =
                 document.createElement("div");
+
 
             overlay.className =
                 "thumbnail-overlay";
 
 
-            const category =
+            const info =
                 document.createElement("div");
-
-            category.className =
-                "thumbnail-category";
-
-            category.textContent =
-                thumbnail.category;
 
 
             const title =
                 document.createElement("div");
 
+
             title.className =
                 "thumbnail-title";
 
+
             title.textContent =
-                thumbnail.title;
+                item.title ||
+                "Thumbnail";
 
 
-            overlay.appendChild(
+            const category =
+                document.createElement("div");
+
+
+            category.className =
+                "thumbnail-category";
+
+
+            category.textContent =
+                item.category ||
+                "Design";
+
+
+            info.appendChild(
+                title
+            );
+
+
+            info.appendChild(
                 category
             );
 
+
             overlay.appendChild(
-                title
+                info
             );
 
 
@@ -295,63 +354,19 @@ function createCards(
                 image
             );
 
+
             card.appendChild(
                 overlay
             );
 
 
-            /*
-               CLICK → LIGHTBOX
-            */
-
             card.addEventListener(
                 "click",
-                function () {
+                () => {
 
-                    currentIndex =
-                        filteredThumbnails.findIndex(
-                            item =>
-                                item.id ===
-                                thumbnail.id
-                        );
-
-
-                    if (
-                        currentIndex < 0
-                    ) {
-
-                        currentIndex = 0;
-
-                    }
-
-
-                    openLightbox();
-
-                }
-            );
-
-
-            /*
-               PAUSE MOVEMENT
-            */
-
-            card.addEventListener(
-                "mouseenter",
-                function () {
-
-                    container.style.animationPlayState =
-                        "paused";
-
-                }
-            );
-
-
-            card.addEventListener(
-                "mouseleave",
-                function () {
-
-                    container.style.animationPlayState =
-                        "running";
+                    openLightbox(
+                        item.image_url
+                    );
 
                 }
             );
@@ -366,119 +381,49 @@ function createCards(
 }
 
 
-/* =========================================
-   DUPLICATE CARDS
-========================================= */
+/* ================= DUPLICATE TRACK ================= */
 
-function duplicateCards(
-    container
-) {
+function duplicateTrack(track) {
 
-    const originalCards =
+    if (!track) return;
+
+
+    const original =
         Array.from(
-            container.children
+            track.children
         );
 
 
-    originalCards.forEach(
-        originalCard => {
+    original.forEach(
+        card => {
 
             const clone =
-                originalCard.cloneNode(
-                    true
-                );
+                card.cloneNode(true);
 
 
-            /*
-               Get title from clone
-            */
+            clone.addEventListener(
+                "click",
+                () => {
 
-            const titleElement =
-                clone.querySelector(
-                    ".thumbnail-title"
-                );
-
-
-            const title =
-                titleElement
-                    ? titleElement.textContent.trim()
-                    : "";
+                    const img =
+                        clone.querySelector(
+                            "img"
+                        );
 
 
-            /*
-               Find original thumbnail
-            */
+                    if (img) {
 
-            const thumbnail =
-                filteredThumbnails.find(
-                    item =>
-                        item.title ===
-                        title
-                );
-
-
-            /*
-               CLICK → LIGHTBOX
-            */
-
-            if (thumbnail) {
-
-                clone.addEventListener(
-                    "click",
-                    function () {
-
-                        currentIndex =
-                            filteredThumbnails.findIndex(
-                                item =>
-                                    item.id ===
-                                    thumbnail.id
-                            );
-
-
-                        if (
-                            currentIndex < 0
-                        ) {
-
-                            currentIndex = 0;
-
-                        }
-
-
-                        openLightbox();
+                        openLightbox(
+                            img.src
+                        );
 
                     }
-                );
-
-            }
-
-
-            /*
-               PAUSE MOVEMENT
-            */
-
-            clone.addEventListener(
-                "mouseenter",
-                function () {
-
-                    container.style.animationPlayState =
-                        "paused";
 
                 }
             );
 
 
-            clone.addEventListener(
-                "mouseleave",
-                function () {
-
-                    container.style.animationPlayState =
-                        "running";
-
-                }
-            );
-
-
-            container.appendChild(
+            track.appendChild(
                 clone
             );
 
@@ -487,148 +432,132 @@ function duplicateCards(
 }
 
 
-/* =========================================
-   OPEN LIGHTBOX
-========================================= */
+/* ================= EMPTY ================= */
 
-function openLightbox() {
+function showEmpty() {
 
-    if (
-        !filteredThumbnails.length
-    ) {
-
-        return;
-
-    }
+    rowOne.innerHTML = "";
+    rowTwo.innerHTML = "";
 
 
-    const thumbnail =
-        filteredThumbnails[
-            currentIndex
-        ];
+    if (rowThree) {
 
-
-    if (!thumbnail) {
-
-        return;
+        rowThree.innerHTML = "";
 
     }
 
 
-    /*
-       Set image
-    */
+    emptyMessage.style.display =
+        "block";
+}
+
+
+/* ================= FILTERS ================= */
+
+filters.forEach(
+    filter => {
+
+        filter.addEventListener(
+            "click",
+            () => {
+
+                filters.forEach(
+                    button => {
+
+                        button.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                filter.classList.add(
+                    "active"
+                );
+
+
+                const selected =
+                    filter.dataset.filter;
+
+
+                if (
+                    selected === "all"
+                ) {
+
+                    renderThumbnails(
+                        allThumbnails
+                    );
+
+                    return;
+                }
+
+
+                const filtered =
+                    allThumbnails.filter(
+                        item => {
+
+                            return (
+                                item.category &&
+                                item.category
+                                    .toLowerCase() ===
+                                selected
+                                    .toLowerCase()
+                            );
+
+                        }
+                    );
+
+
+                renderThumbnails(
+                    filtered
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ================= LIGHTBOX ================= */
+
+function openLightbox(
+    imageUrl
+) {
+
+    if (!imageUrl) return;
+
 
     lightboxImage.src =
-        thumbnail.image_url;
+        imageUrl;
 
-    lightboxImage.alt =
-        thumbnail.title;
-
-
-    /*
-       Set information
-    */
-
-    lightboxTitle.textContent =
-        thumbnail.title;
-
-    lightboxCategory.textContent =
-        thumbnail.category;
-
-
-    /*
-       SHOW LIGHTBOX
-    */
 
     lightbox.classList.add(
-        "active"
+        "show"
     );
 
-
-    /*
-       Stop page scrolling
-    */
 
     document.body.style.overflow =
         "hidden";
 }
 
 
-/* =========================================
-   CLOSE LIGHTBOX
-========================================= */
-
 function closeLightbox() {
 
     lightbox.classList.remove(
-        "active"
+        "show"
     );
+
+
+    lightboxImage.src =
+        "";
 
 
     document.body.style.overflow =
         "";
-
 }
 
-
-/* =========================================
-   NEXT
-========================================= */
-
-function nextThumbnail() {
-
-    if (
-        !filteredThumbnails.length
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex =
-        (
-            currentIndex + 1
-        ) %
-        filteredThumbnails.length;
-
-
-    openLightbox();
-}
-
-
-/* =========================================
-   PREVIOUS
-========================================= */
-
-function previousThumbnail() {
-
-    if (
-        !filteredThumbnails.length
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex =
-        (
-            currentIndex -
-            1 +
-            filteredThumbnails.length
-        ) %
-        filteredThumbnails.length;
-
-
-    openLightbox();
-}
-
-
-/* =========================================
-   LIGHTBOX BUTTONS
-========================================= */
 
 if (lightboxClose) {
 
@@ -639,34 +568,12 @@ if (lightboxClose) {
 
 }
 
-if (lightboxNext) {
-
-    lightboxNext.addEventListener(
-        "click",
-        nextThumbnail
-    );
-
-}
-
-if (lightboxPrev) {
-
-    lightboxPrev.addEventListener(
-        "click",
-        previousThumbnail
-    );
-
-}
-
-
-/* =========================================
-   CLICK OUTSIDE LIGHTBOX
-========================================= */
 
 if (lightbox) {
 
     lightbox.addEventListener(
         "click",
-        function (event) {
+        event => {
 
             if (
                 event.target ===
@@ -683,25 +590,11 @@ if (lightbox) {
 }
 
 
-/* =========================================
-   KEYBOARD
-========================================= */
+/* ================= ESC KEY ================= */
 
 document.addEventListener(
     "keydown",
-    function (event) {
-
-        if (
-            !lightbox ||
-            !lightbox.classList.contains(
-                "active"
-            )
-        ) {
-
-            return;
-
-        }
-
+    event => {
 
         if (
             event.key ===
@@ -712,120 +605,89 @@ document.addEventListener(
 
         }
 
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            nextThumbnail();
-
-        }
-
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            previousThumbnail();
-
-        }
-
     }
 );
 
 
-/* =========================================
-   FILTERS
-========================================= */
+/* ================= MOBILE MENU ================= */
 
-filterButtons.forEach(
-    button => {
+if (
+    menuButton &&
+    mobileMenu
+) {
 
-        button.addEventListener(
-            "click",
-            function () {
+    menuButton.addEventListener(
+        "click",
+        () => {
 
-                /*
-                   Active state
-                */
+            mobileMenu.classList.toggle(
+                "show"
+            );
 
-                filterButtons.forEach(
-                    item =>
-                        item.classList.remove(
-                            "active"
-                        )
-                );
-
-                button.classList.add(
-                    "active"
-                );
+        }
+    );
 
 
-                /*
-                   Category
-                */
+    document
+        .querySelectorAll(
+            ".mobile-menu a"
+        )
+        .forEach(
+            link => {
 
-                const category =
-                    button.dataset.category;
+                link.addEventListener(
+                    "click",
+                    () => {
 
-
-                if (
-                    category === "All"
-                ) {
-
-                    filteredThumbnails =
-                        [...allThumbnails];
-
-                } else {
-
-                    filteredThumbnails =
-                        allThumbnails.filter(
-                            thumbnail =>
-                                thumbnail.category ===
-                                category
+                        mobileMenu.classList.remove(
+                            "show"
                         );
 
-                }
-
-
-                renderThumbnails(
-                    filteredThumbnails
+                    }
                 );
 
             }
         );
 
-    }
-);
+}
 
 
-/* =========================================
-   CURSOR GLOW
-========================================= */
+/* ================= NAVBAR SCROLL ================= */
 
-document.addEventListener(
-    "mousemove",
-    function (event) {
+window.addEventListener(
+    "scroll",
+    () => {
 
-        if (!cursorGlow) {
-            return;
+        const navbar =
+            document.querySelector(
+                ".navbar"
+            );
+
+
+        if (!navbar) return;
+
+
+        if (
+            window.scrollY > 30
+        ) {
+
+            navbar.style.boxShadow =
+                "0 10px 35px rgba(0,0,0,0.06)";
+
+        } else {
+
+            navbar.style.boxShadow =
+                "none";
+
         }
 
-
-        cursorGlow.style.left =
-            event.clientX + "px";
-
-        cursorGlow.style.top =
-            event.clientY + "px";
-
+    },
+    {
+        passive: true
     }
 );
 
 
-/* =========================================
-   START
-========================================= */
+/* ================= START ================= */
 
 loadThumbnails();

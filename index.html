@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jaydip GFX — Thumbnail Designer</title>
+    <title>JAYDIP GFX — Thumbnail Designer</title>
 
     <meta
         name="description"
-        content="Jaydip GFX — High-impact YouTube thumbnail designer creating bold visuals that stop the scroll."
+        content="Premium YouTube thumbnail design for creators, brands and businesses."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
     >
 
     <link rel="stylesheet" href="style.css">
@@ -17,393 +24,396 @@
 
 <body>
 
-    <!-- CURSOR GLOW -->
-    <div class="cursor-glow"></div>
-
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+    <!-- ================= NAVBAR ================= -->
 
     <header class="navbar">
+        <div class="nav-inner">
 
-        <div class="logo">
-            JAYDIP <span>GFX</span>
+            <a href="#home" class="brand">
+                <div class="brand-mark">J</div>
+                <span>JAYDIP<span class="blue">GFX</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <a href="#contact" class="nav-button">
+                Let's Work
+                <span>↗</span>
+            </a>
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
         </div>
-
-        <nav>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-
     </header>
 
 
+    <!-- ================= MOBILE MENU ================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+
+    </div>
+
+
+    <!-- ================= HERO ================= -->
+
     <main>
 
+        <section class="hero" id="home">
 
-        <!-- =========================
-             HERO
-        ========================== -->
+            <div class="hero-glow glow-one"></div>
+            <div class="hero-glow glow-two"></div>
 
-        <section class="hero">
+            <div class="hero-content">
 
-            <div class="hero-label">
-                SELECTED WORK
-            </div>
-
-            <h1>
-                THUMBNAIL
-                <span>DESIGN</span>
-            </h1>
-
-            <p>
-                High-impact YouTube thumbnails designed
-                to stop the scroll and make people click.
-            </p>
-
-            <div class="scroll-text">
-                SCROLL TO EXPLORE ↓
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             PORTFOLIO
-        ========================== -->
-
-        <section class="portfolio" id="work">
-
-            <div class="portfolio-heading">
-
-                <div>
-
-                    <div class="small-label">
-                        PORTFOLIO
-                    </div>
-
-                    <h2>
-                        SELECTED
-                        <span>THUMBNAILS</span>
-                    </h2>
-
+                <div class="profile-image">
+                    <img src="profile.jpg" alt="Jaydip">
                 </div>
 
-
-                <div class="filters">
-
-                    <button
-                        class="filter active"
-                        data-category="All"
-                    >
-                        All
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-category="Finance"
-                    >
-                        Finance
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-category="Gaming"
-                    >
-                        Gaming
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-category="Business"
-                    >
-                        Business
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-category="AI & Tech"
-                    >
-                        AI & Tech
-                    </button>
-
+                <div class="available">
+                    <span class="status-dot"></span>
+                    Available for projects
                 </div>
 
-            </div>
-
-
-            <!-- MOVING THUMBNAILS -->
-
-            <div class="thumbnail-showcase">
-
-                <div
-                    class="thumbnail-row row-left"
-                    id="thumbnailRow1"
-                >
-                    <div class="loading">
-                        Loading work...
-                    </div>
-                </div>
-
-                <div
-                    class="thumbnail-row row-right"
-                    id="thumbnailRow2"
-                >
-                    <div class="loading">
-                        Loading work...
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             ABOUT ME
-        ========================== -->
-
-        <section class="about" id="about">
-
-            <div class="about-top">
-
-                <div class="about-number">
-                    01
-                </div>
-
-                <div class="about-label">
-                    ABOUT ME
-                </div>
-
-            </div>
-
-
-            <div class="about-main">
-
-                <div class="about-heading">
-
-                    <h2>
-                        I DESIGN
-                        <span>THUMBNAILS</span>
-                        THAT GET
-                        <em>NOTICED.</em>
-                    </h2>
-
-                </div>
-
-
-                <div class="about-content">
-
-                    <div class="about-intro">
-
-                        <p class="about-big-text">
-                            I'm Jaydip — a thumbnail designer
-                            focused on creating bold, high-impact
-                            visuals for YouTube creators,
-                            brands and businesses.
-                        </p>
-
-                        <p class="about-description">
-                            My approach is simple: strong visual
-                            hierarchy, powerful compositions and
-                            designs that communicate the idea
-                            instantly.
-                        </p>
-
-                    </div>
-
-
-                    <div class="about-skills">
-
-                        <div class="skill">
-                            <span>01</span>
-                            <strong>THUMBNAIL DESIGN</strong>
-                        </div>
-
-                        <div class="skill">
-                            <span>02</span>
-                            <strong>VISUAL STORYTELLING</strong>
-                        </div>
-
-                        <div class="skill">
-                            <span>03</span>
-                            <strong>YOUTUBE DESIGN</strong>
-                        </div>
-
-                        <div class="skill">
-                            <span>04</span>
-                            <strong>CREATIVE DIRECTION</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ABOUT STATS -->
-
-            <div class="about-bottom">
-
-                <div class="about-stat">
-
-                    <strong>
-                        50<span>+</span>
-                    </strong>
-
-                    <p>
-                        THUMBNAILS
-                    </p>
-
-                </div>
-
-
-                <div class="about-stat">
-
-                    <strong>
-                        04
-                    </strong>
-
-                    <p>
-                        DESIGN CATEGORIES
-                    </p>
-
-                </div>
-
-
-                <div class="about-stat">
-
-                    <strong>
-                        100<span>%</span>
-                    </strong>
-
-                    <p>
-                        CREATIVE FOCUS
-                    </p>
-
-                </div>
-
-
-                <a
-                    href="#contact"
-                    class="about-button"
-                >
-                    LET'S WORK TOGETHER
-                    <span>↗</span>
-                </a>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             CONTACT
-        ========================== -->
-
-        <section class="contact" id="contact">
-
-            <div class="contact-header">
-
-                <div class="contact-number">
-                    02
-                </div>
-
-                <div class="contact-label">
-                    GET IN TOUCH
-                </div>
-
-            </div>
-
-
-            <div class="contact-main">
-
-                <div class="contact-title">
-
-                    <h2>
-                        HAVE A
-                        <span>PROJECT?</span>
-                    </h2>
-
-                    <p>
-                        Let's turn your ideas into thumbnails
-                        that demand attention.
-                    </p>
-
-                </div>
-
-
-                <div class="contact-action">
-
-                    <a
-                        href="mailto:doslajaydip@gmail.com"
-                        class="contact-email"
-                    >
-
-                        <span>
-                            EMAIL ME
-                        </span>
-
-                        <strong>
-                            doslajaydip@gmail.com
-                        </strong>
-
-                        <b>
-                            ↗
-                        </b>
-
+                <h1>
+                    Thumbnails that get
+                    <span>Clicks.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Premium YouTube thumbnails designed to grab attention,
+                    communicate instantly and make your videos stand out.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#portfolio" class="primary-button">
+                        View My Work
+                        <span>↗</span>
                     </a>
 
+                    <a href="#contact" class="secondary-button">
+                        Let's Work Together
+                    </a>
 
-                    <div class="contact-socials">
+                </div>
 
-                        <a
-                            href="https://www.instagram.com/jaydip.thums?stkn=MXZncGpzMDNqcXFlNA=="
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            INSTAGRAM
-                            <span>↗</span>
-                        </a>
+                <div class="hero-stats">
 
-                        <a
-                            href="https://www.linkedin.com/in/jaydip-dosla-b72339359?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            LINKEDIN
-                            <span>↗</span>
-                        </a>
+                    <div class="hero-stat">
+                        <strong>50+</strong>
+                        <span>Thumbnails Created</span>
+                    </div>
 
-                        <a
-                            href="mailto:doslajaydip@gmail.com"
-                        >
-                            EMAIL
-                            <span>↗</span>
-                        </a>
+                    <div class="stat-line"></div>
 
+                    <div class="hero-stat">
+                        <strong>30+</strong>
+                        <span>Design Concepts</span>
+                    </div>
+
+                    <div class="stat-line"></div>
+
+                    <div class="hero-stat">
+                        <strong>CTR</strong>
+                        <span>Focused Design</span>
                     </div>
 
                 </div>
 
             </div>
 
+            <div class="scroll-indicator">
+                <span></span>
+                Scroll to explore
+            </div>
 
-            <div class="contact-bottom">
+        </section>
 
-                <span>
-                    AVAILABLE FOR FREELANCE PROJECTS
-                </span>
 
-                <span>
-                    JAYDIP GFX © 2026
-                </span>
+        <!-- ================= PORTFOLIO ================= -->
+
+        <section class="portfolio-section" id="portfolio">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">SELECTED WORK</span>
+
+                    <h2>
+                        Thumbnails built to
+                        <span>stand out.</span>
+                    </h2>
+                </div>
+
+                <p>
+                    A collection of thumbnail concepts created for
+                    different niches, audiences and content styles.
+                </p>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+
+            <!-- MOVING ROW 1 -->
+
+            <div class="portfolio-marquee">
+
+                <div class="portfolio-track track-one" id="portfolioRowOne">
+                    <!-- Loaded from Supabase -->
+                </div>
+
+            </div>
+
+
+            <!-- MOVING ROW 2 -->
+
+            <div class="portfolio-marquee second-row">
+
+                <div class="portfolio-track track-two" id="portfolioRowTwo">
+                    <!-- Loaded from Supabase -->
+                </div>
+
+            </div>
+
+
+            <div class="portfolio-empty" id="portfolioEmpty">
+                No thumbnails found.
+            </div>
+
+        </section>
+
+
+        <!-- ================= SERVICES ================= -->
+
+        <section class="services-section" id="services">
+
+            <div class="services-heading">
+
+                <span class="eyebrow">SERVICES</span>
+
+                <h2>
+                    Everything your channel
+                    <span>needs to get clicked.</span>
+                </h2>
+
+                <p>
+                    From a single thumbnail to a complete visual system,
+                    every design is created around your content and audience.
+                </p>
+
+            </div>
+
+
+            <div class="services-grid">
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        <span>✦</span>
+                    </div>
+
+                    <div class="service-number">01</div>
+
+                    <h3>Custom Thumbnails</h3>
+
+                    <p>
+                        High-impact thumbnails designed around your topic,
+                        audience and video concept to instantly grab attention.
+                    </p>
+
+                    <div class="service-arrow">↗</div>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        <span>↗</span>
+                    </div>
+
+                    <div class="service-number">02</div>
+
+                    <h3>Thumbnail Concepts</h3>
+
+                    <p>
+                        Multiple creative directions that explore different
+                        hooks, compositions and visual ideas for your video.
+                    </p>
+
+                    <div class="service-arrow">↗</div>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        <span>◈</span>
+                    </div>
+
+                    <div class="service-number">03</div>
+
+                    <h3>Channel Branding</h3>
+
+                    <p>
+                        A consistent thumbnail style and visual identity
+                        that makes your content instantly recognizable.
+                    </p>
+
+                    <div class="service-arrow">↗</div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROCESS ================= -->
+
+        <section class="process-section" id="process">
+
+            <div class="process-heading">
+
+                <span class="eyebrow">THE PROCESS</span>
+
+                <h2>
+                    Simple process.
+                    <span>Strong results.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="process-grid">
+
+                <div class="process-card">
+
+                    <div class="process-top">
+                        <span>01</span>
+                        <div class="process-line"></div>
+                    </div>
+
+                    <h3>Understand</h3>
+
+                    <p>
+                        I understand your video, audience, niche and the
+                        main idea you want viewers to notice.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card">
+
+                    <div class="process-top">
+                        <span>02</span>
+                        <div class="process-line"></div>
+                    </div>
+
+                    <h3>Design</h3>
+
+                    <p>
+                        I turn the concept into a clear visual composition
+                        with strong hierarchy, emotion and contrast.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card">
+
+                    <div class="process-top">
+                        <span>03</span>
+                        <div class="process-line"></div>
+                    </div>
+
+                    <h3>Refine</h3>
+
+                    <p>
+                        Details are polished and the final thumbnail is
+                        prepared in the correct YouTube-ready format.
+                    </p>
+
+                </div>
+
+
+                <div class="process-card">
+
+                    <div class="process-top">
+                        <span>04</span>
+                        <div class="process-line"></div>
+                    </div>
+
+                    <h3>Deliver</h3>
+
+                    <p>
+                        You receive a clean, high-resolution thumbnail
+                        ready to upload to your channel.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta-section" id="contact">
+
+            <div class="cta-inner">
+
+                <span class="eyebrow">HAVE A PROJECT?</span>
+
+                <h2>
+                    Let's make your next
+                    <span>video impossible to ignore.</span>
+                </h2>
+
+                <p>
+                    Tell me about your video and let's create a thumbnail
+                    that deserves the click.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                        href="https://wa.me/9104968185?text=Hi%20Jaydip%2C%20I%27m%20interested%20in%20your%20thumbnail%20design%20service."
+                        target="_blank"
+                        rel="noopener"
+                        class="primary-button large"
+                    >
+                        Start a Project
+                        <span>↗</span>
+                    </a>
+
+                    <a
+                        href="https://www.instagram.com/jaydip.thums/"
+                        target="_blank"
+                        rel="noopener"
+                        class="secondary-button large"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
 
             </div>
 
@@ -412,89 +422,86 @@
     </main>
 
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- ================= FOOTER ================= -->
 
     <footer>
 
-        <div>
-            © 2026 JAYDIP GFX
-        </div>
+        <div class="footer-inner">
 
-        <div>
-            THUMBNAIL DESIGNER
-        </div>
+            <div class="footer-brand">
 
-    </footer>
+                <div class="brand-mark">
+                    <img src="profile.jpg" alt="Jaydip">
+                </div>
 
+                <div>
+                    <strong>JAYDIP<span class="blue">GFX</span></strong>
 
+                    <p>
+                        Thumbnails that get noticed.
+                    </p>
+                </div>
 
-    <!-- =========================
-         LIGHTBOX
-    ========================== -->
-
-    <div
-        class="lightbox"
-        id="lightbox"
-    >
-
-        <button
-            class="lightbox-close"
-            id="lightboxClose"
-            aria-label="Close preview"
-        >
-            ×
-        </button>
+            </div>
 
 
-        <button
-            class="lightbox-nav lightbox-prev"
-            id="lightboxPrev"
-            aria-label="Previous thumbnail"
-        >
-            ←
-        </button>
+            <div class="footer-links">
+
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+
+            </div>
 
 
-        <div class="lightbox-content">
+            <div class="footer-social">
 
-            <img
-                id="lightboxImage"
-                src=""
-                alt="Thumbnail Preview"
-            >
+                <a
+                    href="https://www.instagram.com/jaydip.thums/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Instagram
+                </a>
 
-            <div class="lightbox-info">
-
-                <span id="lightboxCategory"></span>
-
-                <h3 id="lightboxTitle"></h3>
+                <a
+                    href="mailto:doslajaydip@gmail.com"
+                >
+                    Email
+                </a>
 
             </div>
 
         </div>
 
 
-        <button
-            class="lightbox-nav lightbox-next"
-            id="lightboxNext"
-            aria-label="Next thumbnail"
-        >
-            →
+        <div class="footer-bottom">
+
+            <span>© 2026 Jaydip GFX. All rights reserved.</span>
+
+            <span>Designed for creators.</span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= LIGHTBOX ================= -->
+
+    <div class="lightbox" id="lightbox">
+
+        <button class="lightbox-close" id="lightboxClose">
+            ×
         </button>
+
+        <img id="lightboxImage" src="" alt="Thumbnail preview">
 
     </div>
 
 
-
-    <!-- SUPABASE -->
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script src="script.js"></script>
 
 </body>
-
 </html>
